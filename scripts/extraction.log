@@ -1,0 +1,8 @@
+2023-06-26 09:56:39,638 - INFO - Data fetched successfully
+2023-06-26 09:56:39,642 - ERROR - Failed to fetch and save data: [Errno 2] No such file or directory: 'Documents/Omni Agoras Balance Tracking/data/omni_extracted.csv'
+2023-06-26 10:02:48,763 - INFO - Data fetched successfully
+2023-06-26 10:02:48,764 - ERROR - Failed to fetch and save data: [Errno 2] No such file or directory: 'Documents/Omni Agoras Balance Tracking/data/omni_extracted.csv'
+2023-06-26 10:05:42,408 - INFO - Data fetched successfully
+2023-06-26 10:05:42,512 - INFO - Data saved to output.csv successfully
+2023-06-26 10:15:39,949 - INFO - Data fetched successfully
+2023-06-26 10:15:40,064 - INFO - Data saved to output.csv successfully
