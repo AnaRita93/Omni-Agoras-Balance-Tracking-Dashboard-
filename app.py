@@ -13,6 +13,8 @@ import pandas as pd
 
 # Load the data
 df = pd.read_csv('data/omni_extracted.csv')
+latest_balance = df.sort_values('timestamp').drop_duplicates('address', keep='last')
+latest_balance = latest_balance[['address', 'balance', 'timestamp']]
 
 # Initialize the app
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -23,8 +25,8 @@ app.layout = dbc.Container([
 
     dash_table.DataTable(
         id='table',
-        columns=[{"name": i, "id": i} for i in df.columns],
-        data=df.to_dict('records'),
+        columns=[{"name": i, "id": i} for i in latest_balance.columns],
+        data=latest_balance.to_dict('records'),
         sort_action="native",
         filter_action="native",
         style_cell={'textAlign': 'left'},
@@ -36,7 +38,7 @@ app.layout = dbc.Container([
 ], className='mt-4')
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(host='0.0.0.0', debug=True, port=8081)
 
 
 

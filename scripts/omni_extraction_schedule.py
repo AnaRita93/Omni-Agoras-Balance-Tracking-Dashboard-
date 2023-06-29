@@ -54,11 +54,11 @@ def job():
         df = fetch_data()
         # Check if the file exists
         try:
-            df_existing = pd.read_csv("/home/rita/Documents/Omni Agoras Balance Tracking/data/omni_extracted.csv")
+            df_existing = pd.read_csv("/home/rita/omni_agoras_app/OmniAgorasBalanceTracking/data/omni_extracted.csv")
             df = pd.concat([df_existing, df])
         except FileNotFoundError:
             pass
-        df.to_csv("/home/rita/Documents/Omni Agoras Balance Tracking/data/omni_extracted.csv", index=False)
+        df.to_csv("/home/rita/omni_agoras_app/OmniAgorasBalanceTracking/data/omni_extracted.csv", index=False)
 
         logging.info('Data saved to output.csv successfully')
 
@@ -72,11 +72,10 @@ def main():
     schedule.every(12).hours.do(job)
 
     while True:
-        schedule.run_pending()
-        time.sleep(1)
+        schedule.run_pending();        time.sleep(1)
     
     #df = fetch_data()
-    #df.to_csv("Documents/Omni Agoras Balance Tracking/omni_extracted.csv", index=False)
+    #df.to_csv("Documents/OmniAgorasBalanceTracking/omni_extracted.csv", index=False)
 
 if __name__ == "__main__":
     main()
