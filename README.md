@@ -1,16 +1,20 @@
 # Omni-Agoras-Balance-Tracking-Dashboard-
 
+Dashboard Live version on: http://144.91.121.7:8081/
+
+### Purpose of this Project
+This project aims to develop a dashboard to monitor Omni Agoras Token balances in real-time. It tracks addresses by their latest balance (collected daily), notifies balance changes, and visualizes balance trends over time.
+
 ### What are Omni Agora Tokens?
+Agoras Tokens (AGRS) are a cryptocurrency linked to the Tau Chain and Agoras projects. They're designed for a decentralized platform that allows for creating decentralized applications and new cryptocurrencies. Within this Tau platform, Agoras Tokens are the native currency, used for rewarding network contributors.
 
-Omni tokens are a subset of Agoras tokens. 
+### Data Source:
+OmniAPI (https://api.omniexplorer.info/, https://api.omniexplorer.info/ask.aspx?api=getpropertybalances&prop=58).
 
-Agoras Tokens (AGRS) is a cryptocurrency token associated with the project called Tau Chain and Agoras. The project is designed to create a decentralized platform for a variety of use cases including smart contracts and knowledge sharing.
+### Variables 
+- Addresses: Unique identifiers for accounts on the Omni Layer.
+- Balance: The net amount of tokens an address holds at any point in time.
+- Reserves: Tokens held back by the project's team for specific purposes.
 
-Tau Chain aims to be a decentralized, peer-to-peer network with its logic and rules defined by its users. The idea is to create a platform where users can create their own decentralized applications and even their own cryptocurrencies.
+These variables help us understand the state of the Omni Layer, a protocol layered over the Bitcoin blockchain, which allows for custom digital asset creation and trading.
 
-Agoras Tokens, on the other hand, is designed to be the native cryptocurrency within the Tau platform, used for a variety of purposes including remuneration for contributors to the network.
-
-
-### What is the purpose of this project?
-
-The goal is to create a monitoring dashboard that tracks down addresses by their latest balance (data collected daily), alerts where/when/by how much the balance changed and balance variations over time. 
