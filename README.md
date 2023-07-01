@@ -2,11 +2,13 @@
 
 Dashboard Live version on: http://144.91.121.7:8081/
 
-### Purpose of this Project
-This project aims to develop a dashboard to monitor Omni Agoras Token balances in real-time. It tracks addresses by their latest balance (collected daily), notifies balance changes, and visualizes balance trends over time.
+### Project Objective
+The objective of this project is to design a dashboard that monitors the balances of Agoras Tokens (AGRS) on the Omni layer. The key features of this dashboard include tracking the latest balances of individual addresses (updated daily), alerting on balance variations, and illustrating balance trends over specified periods.
 
-### What are Omni Agora Tokens?
-Agoras Tokens (AGRS) are a cryptocurrency linked to the Tau Chain and Agoras projects. They're designed for a decentralized platform that allows for creating decentralized applications and new cryptocurrencies. Within this Tau platform, Agoras Tokens are the native currency, used for rewarding network contributors.
+Currently, the existing AGRS tokens function as placeholders, built on the ERC-20 token standard. However, there are valid tokens based on the older Omni Layer protocol, which are challenging to monitor due to lack of effective visualization tools. This dashboard aims to address that.
+
+### Brief on Agoras Tokens (AGRS)
+AGRS plays a pivotal role within the Tau product ecosystem, which encompasses Tau, Tau Net, and Tau Live. AGRS tokens can be exchanged for various products and services such as knowledge sharing, computational resources, and financial tools. These transactions are facilitated by contracts built on Tau technology, which enhances the use and liquidity of AGRS.
 
 ### Data Source:
 OmniAPI (https://api.omniexplorer.info/, https://api.omniexplorer.info/ask.aspx?api=getpropertybalances&prop=58).
