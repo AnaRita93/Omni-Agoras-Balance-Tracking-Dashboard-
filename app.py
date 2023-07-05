@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
 
 # In[1]:
@@ -37,7 +37,7 @@ latest_df = df.sort_values('date').drop_duplicates('address', keep='last')
 
 majority_date = pd.to_datetime(latest_df['date'].mode()[0])
 majority_date = pd.Timestamp(majority_date)
-latest_df.loc[latest_df['date'].apply(pd.Timestamp) < majority_date, 'balance'] = 0
+latest_df.loc[latest_df['date'].apply(pd.Timestamp) != majority_date, 'balance'] = 0
 
 ## Calculate each address contribution  
 total_balance = latest_df['balance'].sum()
@@ -70,10 +70,22 @@ df_pivot = df_diff.pivot(index='address', columns='date', values=['balance', 'ab
 
 #Find the changed addresses  
 
-changes_found_df = df_diff[df_diff['abs_diff'] > 0] #['address'] #.unique()
-#changes_found_df = df[df['address'].isin(addresses_with_abs_diff)]
+changes_found_df = df_diff[(df_diff['abs_diff'] > 0) |(df_diff['abs_diff'] < 0)] #['address'] #.unique()
 changes_found_df = changes_found_df[['address', 'date', 'abs_diff', 'rel_diff']]
 matching_addresses = changes_found_df['address'].tolist()
+
+merged_df = pd.merge(changes_found_df, latest_df[['address', 'balance', 'percentage']], on='address', how='left')
+merged_df = merged_df.sort_values(by=['date'])
+merged_df = merged_df[['address','date', 'abs_diff','rel_diff','balance', 'percentage']]
+merged_df = merged_df.rename(columns={"date":"date", 
+                                      'abs_diff':'absolute_diff',
+                                      'rel_diff':'relative_diff',
+                                      "balance": "current balance", 
+                                      "percentage": "balance weight"})
+merged_df['relative_diff']= merged_df['relative_diff'].round(3)
+changes_found_df = merged_df
+changes_found_df.to_csv('changes_found.csv', index=False)
+
 
 def create_figure(df, title):
     fig = px.line(df, x="date", y="balance", title=title,
@@ -272,7 +284,7 @@ def update_line_chart(selected_address):
 
             
 if __name__ == '__main__':
-    app.run_server(debug=False, port=8081)
+    app.run_server(debug=True,host='144.91.121.7', port=8081)
 
 
 
