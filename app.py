@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # coding: utf-8
 
 # In[1]:
@@ -7,12 +7,28 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
 from datetime import datetime, timedelta
+
 import dash
 import dash_bootstrap_components as dbc
 from dash import Dash
 from dash import dcc, html, dash_table, Input, Output,State, callback
 from dash.dash_table import DataTable, FormatTemplate
 from dash.dash_table.Format import Format, Scheme, Sign, Symbol,Trim, Group
+
+
+def create_figure(df, title):
+    fig = px.line(df, x="date", y="balance", title=title,
+    labels={"date": "Date","balance": "Balance"},
+    template='plotly_white')
+    
+    # Add markers and increase the line width
+    fig.update_traces(mode='lines+markers', line=dict(width=2)),
+    fig.update_xaxes(tickangle=45, dtick="D1", tickformat="%d-%m-%Y")
+        
+    return fig
+
+# Initialize the app
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Load the data
 df = pd.read_csv('data/omni_extracted.csv')
@@ -84,22 +100,6 @@ merged_df = merged_df.rename(columns={"date":"date",
                                       "percentage": "balance weight"})
 merged_df['relative_diff']= merged_df['relative_diff'].round(3)
 changes_found_df = merged_df
-changes_found_df.to_csv('changes_found.csv', index=False)
-
-
-def create_figure(df, title):
-    fig = px.line(df, x="date", y="balance", title=title,
-    labels={"date": "Date","balance": "Balance"},
-    template='plotly_white')
-    
-    # Add markers and increase the line width
-    fig.update_traces(mode='lines+markers', line=dict(width=2)),
-    fig.update_xaxes(tickangle=45, dtick="D1", tickformat="%d-%m-%Y")
-        
-    return fig
-
-# Initialize the app
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container([
     
